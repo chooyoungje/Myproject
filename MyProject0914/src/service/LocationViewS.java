@@ -9,9 +9,9 @@ public class LocationViewS {
 
 	public LocationDTO locationView(HttpServletRequest request) {
 		LocationDAO ldao = new LocationDAO();
-		String lview =request.getParameter("location");
+		int lnumber = Integer.parseInt(request.getParameter("lnumber"));
 		ldao.dbconnection();
-		LocationDTO ldto = ldao.LocationView(lview);
+		LocationDTO ldto = ldao.LocationView(lnumber);
 		ldao.dbClose();
 		return ldto;
 	}

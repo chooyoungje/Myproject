@@ -12,14 +12,14 @@
 <div style="width:80%;height:80%; margin-right:auto; margin-left:auto;">
 	<table border="1" >
 		<tr>
-			<td>회워ID</td>
-			<td>회워PW</td>
+			<td>회원ID</td>
+			<td>회원PW</td>
 			<td>이름</td>
 			<td>주소</td>
 			<td>전화번호</td>
 			<td>생년월일</td>
 			<td>회원삭제</td>
-			<td>회원수정</td>
+			
 		</tr>
 		<c:forEach var="board" items="${boardList}" >
 			<tr>
@@ -29,8 +29,8 @@
 				<td>${board.maddress}</td>
 				<td>${board.mphone}</td>
 				<td>${board.mbirth}</td>
-				<td><button>회원삭제</button></td>
-				<td><button>회원수정</button></td>
+				<td><button onclick="location.href='memberdelete'+${board.mid}">회원삭제</button></td>
+				
 				
 			</tr>
 		</c:forEach>

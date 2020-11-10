@@ -12,7 +12,7 @@ import service.LocationInputS;
 @WebServlet("/locationinput")
 public class LocationInputC extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+      
     public LocationInputC() {
         super();
     }
@@ -22,8 +22,7 @@ public class LocationInputC extends HttpServlet {
 		LocationInputS svc = new LocationInputS();
 		int result = svc.locationInput(request);
 		if(result==1)
-			{
-			
+			{response.sendRedirect("admin.jsp");
 			}
 	}
 

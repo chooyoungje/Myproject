@@ -25,7 +25,7 @@ public class MemberListallC extends HttpServlet {
 		MemberListallS mlsvc = new MemberListallS();
 		List<MemberDTO> mlist = mlsvc.memberlistAll();
 		request.setAttribute("mlist", mlist);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("memberlistall.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
 		dispatcher.forward(request, response);
 	}
 

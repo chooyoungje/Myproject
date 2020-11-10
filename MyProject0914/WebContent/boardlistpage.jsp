@@ -9,8 +9,16 @@
 </head>
 <body>
 <jsp:include page="maintool.jsp" flush="false"/>
+
 <div style="width:80%;height:80%; margin-right:auto; margin-left:auto;">
-	<table border="1" >
+	<div style="width:80%;">
+		<form style="float:left;" action="boardsearch" method="post" name="bsearchform">
+			<input type="text" name="bsearch">
+		</form>
+		<button style="float:left;" onclick="bsearch()">게시판 검색</button>
+	</div>
+
+	<table border="1" style="float:left;">
 		<tr>
 			<td>글번호</td>
 			<td>작성자</td>
@@ -19,19 +27,44 @@
 			<td>조회수</td>
 		</tr>
 		<c:forEach var="board" items="${boardList}" >
-			<tr>
+		
+		<c:choose>  
+			<c:when test="${1 eq board.bnotice}" >  
+			<tr id="t1"> 
+				<td style="color:red">${board.bnumber}</td>
+				<td style="color:red">${board.bwriter}</td>
+				<td style="color:red"><a
+					href="boardview?bnumber=${board.bnumber}&page=${paging.page}">${board.btitle}</a></td>
+				<td style="color:red">${board.bdate}</td>
+				<td style="color:red">${board.bhits}</td>
+				<c:if test="${sessionScope eq 'admin'}">
+				<td style="color:red"><button onclick="location.href='boarddeleteadmin?bnumber='${board.bnumber}">글삭제</button></td>
+				</c:if>
+			</tr>
+			</c:when>
+			
+			<c:otherwise> 
+				<tr id="t1"> 
 				<td>${board.bnumber}</td>
 				<td>${board.bwriter}</td>
 				<td><a
 					href="boardview?bnumber=${board.bnumber}&page=${paging.page}">${board.btitle}</a></td>
 				<td>${board.bdate}</td>
 				<td>${board.bhits}</td>
+				<c:if test="${sessionScope eq 'admin'}">
+				<td><button onclick="location.href='boarddeleteadmin?bnumber='${board.bnumber}">글삭제</button></td>
+				</c:if>
 			</tr>
+			</c:otherwise>
+		</c:choose>
+	
+			
 		</c:forEach>
 		<tr>
-			<td colspan="5"><button onclick="location.href='BoardWrite.jsp'">글쓰기</button> </td>
+			<td colspan="5"><button onclick="location.href='boardwrite.jsp'">글쓰기</button> </td>
 		</tr>
 	</table>
+
 	
 	
 	<c:if test="${paging.page<=1}">

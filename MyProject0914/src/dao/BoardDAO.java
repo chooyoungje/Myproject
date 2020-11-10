@@ -150,7 +150,7 @@ public class BoardDAO {
 		return result;
 	}
 	public List<BoardDTO> BoardListAll() {
-		String sql="SELECT * FROM BOARD";
+		String sql="SELECT * FROM (SELECT B.*, ROW_NUMBER() OVER(ORDER BY BNOTICE DESC,BNUMBER DESC) AS RN FROM BOARD B) WHERE RN BETWEEN ? AND ?";
 		List<BoardDTO> blist = new ArrayList<BoardDTO>();
 		BoardDTO bdto =null;
 		try {pstmt=con.prepareStatement(sql);
@@ -198,7 +198,7 @@ public class BoardDAO {
   	
 	
 	public List<BoardDTO> boardListPaging(int startRow, int endRow) {
-		String sql = "SELECT * FROM BOARDLIST WHERE RN BETWEEN ? AND ?";
+		String sql = "SELECT * FROM (SELECT B.*, ROW_NUMBER() OVER(ORDER BY BNOTICE DESC,BNUMBER DESC) AS RN FROM BOARD B) WHERE RN BETWEEN ? AND ?";
 		List<BoardDTO> boardList = new ArrayList<BoardDTO>();
 		BoardDTO board = null;
 		try {

@@ -23,7 +23,7 @@ public class BoardDeleteC extends HttpServlet {
 		BoardDeleteS dsvc = new BoardDeleteS();
 		int result=dsvc.boardDelete(request);
 		if(result==1)
-			{response.sendRedirect("boardlistall");
+			{response.sendRedirect("mypage");
 			}
 		else
 			{response.sendRedirect("boarddeletefail.jsp");

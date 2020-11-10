@@ -22,7 +22,7 @@ public class BoardWriteC extends HttpServlet {
 		BoardWriteS wsvc = new BoardWriteS();
 		int result=wsvc.boardWrite(request);
 		if(result==1)
-			{response.sendRedirect("boardlistall");
+			{response.sendRedirect("boardlistpaging");
 			}
 		else
 			{response.sendRedirect("boardwrite.jsp");

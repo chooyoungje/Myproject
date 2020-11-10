@@ -19,7 +19,7 @@
 		<div>
 		<table border=1>
 			<tr>
-				<th>아이디</th><th>이름</th><th>생년월일</th><th>주소</th><th>휴대폰 번호</th>
+				<th>아이디</th><th>이름</th><th>생년월일</th><th>주소</th><th>휴대폰 번호</th><th>회원수정</th>
 			</tr>
 			<tr>
 				<td>${mdto.mid}</td>
@@ -27,26 +27,34 @@
 				<td>${mdto.mbirth}</td>
 				<td>${mdto.maddress}</td>
 				<td>${mdto.mphone}</td>
+				<td><button onclick="location.href='memberupdate'">회원수정</button></td>
 			</tr>
 		
 		</table>
 		</div>
 		</fieldset><br>
 	</div>
+	
+	<script>
+
+	
+	</script>
+	
 	<div>
 		<fieldset>
 		<legend>장바구니</legend>
 		<div>
 		<table border=1>
 			<tr>
-				<th>상품번호</th><th>상품이름</th><th>상품정보</th><th>상품가격</th>
+				<th>상품번호</th><th>상품이름</th><th>상품가격</th><th>상품수량</th>
 			</tr>
 			<c:forEach var="baslist" items="${baslist}">
 			<tr>
 				<td>${baslist.bpnumber} </td>
 				<td>${baslist.bpname} </td>
-				<td>${baslist.bpcontents} </td>
 				<td>${baslist.bpprice} </td>
+				<td>${baslist.pbamount} </td>
+				<td><button onclick="location.href='basketdelete?bpnumber='+${baslist.bpnumber}">장바구니 삭제</button></td>
 			</tr>
 			</c:forEach>
 		
@@ -67,7 +75,9 @@
 				<td>${blist.bnumber}</td>
 				<td>${blist.btitle}</td>
 				<td>${blist.bdate}</td>
-				<td>${blist.hits}</td>
+				<td>${blist.bhits}</td>
+				<td><button onclick="location.href='boardupdate?bnumber='+${blist.bnumber}">글 수정</button></td>
+				<td><button onclick="location.href='boarddelete?bnumber='+${blist.bnumber}">글 삭제</button></td>
 			</tr>
 			</c:forEach>
 		

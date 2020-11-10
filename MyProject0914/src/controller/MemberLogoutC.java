@@ -23,7 +23,7 @@ public class MemberLogoutC extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		session.invalidate();
-		response.sendRedirect("memberlogin.jsp");
+		response.sendRedirect("Main.jsp");
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

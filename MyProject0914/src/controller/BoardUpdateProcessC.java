@@ -22,7 +22,7 @@ public class BoardUpdateProcessC extends HttpServlet {
 		BoardUpdateProcessS psvc =new BoardUpdateProcessS();
 		int result = psvc.boardpdateProcess(request);
 		if(result==1)
-			{response.sendRedirect("boardlistall");
+			{response.sendRedirect("mypage");
 			}
 		else
 			{response.sendRedirect("boardupdate.jsp");

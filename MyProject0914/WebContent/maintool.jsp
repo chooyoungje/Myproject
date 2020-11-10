@@ -11,6 +11,7 @@
     <script src="https://kit.fontawesome.com/cc658ecbd6.js" crossorigin="anonymous"></script>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3fb5a3b00f6c3e99f36852eb9c9e615b"></script>
+    <link rel="stylesheet" href="MainCSS/MainCSS.css" media="all" type="text/css"/>
 <script>
       function sample6_execDaumPostcode() {
           new daum.Postcode({
@@ -164,7 +165,7 @@
           .prev, .next,.text {font-size: 11px}
         }
         #search01   {box-sizing: border-box;
-                     width: 91%;
+                     width: 70%;
                      height: 45px;
                      font-size: 20px ;
                      background-color: white;
@@ -710,13 +711,13 @@ body {font-family: Arial;}
 <body>
     
       
-      <div id="main">
-        <i class="far fa-building" style="font-size: 43px;float: left;"></i>
+      <div id="main" style="width: 100%; float: left;">
+        <a href="Main.jsp"><i class="far fa-building" style="font-size: 43px;float: left;"></i></a>
             <div id="main_search">
               <input id=search01 type="text">
-              <i class="fas fa-search" style="font-size: 30px;" onclick=""></i>
+             <button onclick="locationsearch()" style="float:left;">시설검색</button>
             </div>
-            <i class="fas fa-street-view" onclick="location.href='MyLocationMap.jsp'" style="font-size: 43px; float: left; " onclick=""></i>
+           <a href="https://map.kakao.com/link/search/헬스"><i class="fas fa-street-view" style="font-size: 43px; float: left; "></i></a>
             
       </div>
       
@@ -725,7 +726,7 @@ body {font-family: Arial;}
     <div class="slideshow-container">
 
       <div class="container mySlides fade">
-        <img src="../images/메인이미지.jpg" alt="Notebook" class="main_img">
+        <img src="메인이미지.jpg" alt="Notebook" class="main_img">
         <div class="content">
         </div>
       </div>
@@ -748,16 +749,9 @@ body {font-family: Arial;}
     </div>
 </div>
 
-  <div style="margin: auto;">
-    <span class="dot" onclick="currentSlide(1)"></span> 
-    <span class="dot" onclick="currentSlide(2)"></span> 
-    <span class="dot" onclick="currentSlide(3)"></span> 
-  </div>
-
 
   <!-- ------------------------공지사항------------------- -->
 <div style="width: 100%; float: left; padding: 20px;">
-
 
   
   <div id="mySidenav1" class="sidenav1" style="float: left;">

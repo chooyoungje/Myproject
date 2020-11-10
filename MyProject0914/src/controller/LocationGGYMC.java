@@ -21,8 +21,10 @@ public class LocationGGYMC extends HttpServlet {
     protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		LocationGGYMS svc = new LocationGGYMS();
-		
-		
+		int result=svc.locationGgym(request);
+		if(result==1)
+			{response.sendRedirect("Main.jsp");
+			}
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

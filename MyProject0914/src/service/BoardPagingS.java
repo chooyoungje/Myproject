@@ -59,5 +59,5 @@ public class BoardPagingS {
 		paging.setEndPage(endPage);
 		paging.setMaxPage(maxPage);
 		return paging;
-	}
+	}  
 }

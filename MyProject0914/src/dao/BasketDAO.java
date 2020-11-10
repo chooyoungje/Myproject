@@ -41,15 +41,15 @@ public class BasketDAO {
 		con=DBConnection.getConnection();
 	}
 	public int BasketInput(BasketDTO bdto) {
-		String sql="INSERT INTO MEMBER_BASKET(BPNUMBER,BPNAME,BMID,BPFILE,BPPRICE)"
+		String sql="INSERT INTO MEMBER_BASKET(BPNUMBER,BPNAME,BMID,BPPRICE,PBAMOUNT)"
 				+ "VALUES(?,?,?,?,?)";
 		int result=0;
 		try {pstmt=con.prepareStatement(sql);
 			 pstmt.setInt(1, bdto.getBpnumber());
 			 pstmt.setString(2, bdto.getBpname());
 			 pstmt.setString(3, bdto.getBmid());
-			 pstmt.setString(4, bdto.getBpfile());
-			 pstmt.setInt(5, bdto.getBpprice());
+			 pstmt.setInt(4, bdto.getBpprice());
+			 pstmt.setInt(5, bdto.getPbamount());
 			 result=pstmt.executeUpdate();
 			} 
 		catch (SQLException e) {
@@ -72,8 +72,9 @@ public class BasketDAO {
 			 	 bdto.setBpnumber(rs.getInt("BPNUMBER"));
 			 	 bdto.setBpname(rs.getString("BPNAME"));
 			 	 bdto.setBmid(rs.getString("BMID"));
-			 	 bdto.setBpfile(rs.getString("BPFILE"));
 			 	 bdto.setBpprice(rs.getInt("BPPRICE"));
+			 	 bdto.setPbamount(rs.getInt("PBAMOUNT"));
+			 	 bdto.setBpfile(rs.getString("BFILE"));
 			 	 blist.add(bdto);
 			 	}
 			}
@@ -85,6 +86,19 @@ public class BasketDAO {
 }
 		return blist;
 	}
-	
-	
+	public int BasketDelete(String mid, int bpnum) {
+		String sql="DELETE FROM MEMBER_BASKET WHERE BMID=? AND BPNUMBER=?";
+		int result=0;
+		try {pstmt=con.prepareStatement(sql);
+			 pstmt.setString(1, mid);
+			 pstmt.setInt(2, bpnum);
+			 result=pstmt.executeUpdate();
+			} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally {pstmtClose();
+				}
+		return result;
+	}
 }

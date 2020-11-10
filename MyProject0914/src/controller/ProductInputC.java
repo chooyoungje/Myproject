@@ -22,8 +22,7 @@ public class ProductInputC extends HttpServlet {
 		ProductInputS svc = new ProductInputS();
 		int result= svc.productInput(request);
 		if(result==1)
-			{response.sendRedirect("productinput.jsp"); 
-			
+			{response.sendRedirect("admin.jsp"); 
 			}
 		
 	}

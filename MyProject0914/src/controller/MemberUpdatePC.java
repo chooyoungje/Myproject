@@ -22,7 +22,7 @@ public class MemberUpdatePC extends HttpServlet {
 		MemberUpdatePS msvc =new MemberUpdatePS();
 		int result = msvc.memberupdateS(request);
 		if(result==1) 
-			{response.sendRedirect("boardlistall");
+			{response.sendRedirect("mypage");
 			}
 		else 
 			{response.sendRedirect("boardupdatefail.jsp");

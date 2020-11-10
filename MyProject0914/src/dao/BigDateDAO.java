@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import db.DBConnection;
 import dto.BigDateDTO;
@@ -55,6 +57,27 @@ public class BigDateDAO {
 		finally {
 			pstmtClose();
 		}
+	}
+	public List<BigDateDTO> DataView() {
+	String sql="SELECT * FROM BIG_DATE";
+	List<BigDateDTO> list= new ArrayList<BigDateDTO>();
+	BigDateDTO dto =null;
+	try {pstmt=con.prepareStatement(sql);
+		 rs=pstmt.executeQuery();
+		 while(rs.next())
+		 	{dto = new BigDateDTO();
+		 	 dto.setMage(rs.getInt("MAGE"));
+		 	 dto.setPnumber(rs.getInt("PNUMBER"));
+		 	 list.add(dto);
+		 	}
+		} 
+	catch (SQLException e) {
+		e.printStackTrace();
+	}
+	finally {rsClose();
+			 pstmtClose();
+			}
+	return list;
 	}
 	
 }

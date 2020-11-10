@@ -6,7 +6,7 @@ public class BasketDTO {
     String bpname; 
     String bmid; 
     String bpfile; 
-    String bpcontents;
+    int pbamount;
     int bpprice;
 	public int getBpnumber() {
 		return bpnumber;
@@ -32,6 +32,12 @@ public class BasketDTO {
 	public void setBpfile(String bpfile) {
 		this.bpfile = bpfile;
 	}
+	public int getPbamount() {
+		return pbamount;
+	}
+	public void setPbamount(int pbamount) {
+		this.pbamount = pbamount;
+	}
 	public int getBpprice() {
 		return bpprice;
 	}
@@ -41,18 +47,20 @@ public class BasketDTO {
 	@Override
 	public String toString() {
 		return "BasketDTO [bpnumber=" + bpnumber + ", bpname=" + bpname + ", bmid=" + bmid + ", bpfile=" + bpfile
-				+ ", bpprice=" + bpprice + "]";
+				+ ", pbamount=" + pbamount + ", bpprice=" + bpprice + "]";
 	}
-	public BasketDTO(int bpnumber, String bpname, String bmid, String bpfile, int bpprice) {
+	public BasketDTO(int bpnumber, String bpname, String bmid, String bpfile, int pbamount, int bpprice) {
 		super();
 		this.bpnumber = bpnumber;
 		this.bpname = bpname;
 		this.bmid = bmid;
 		this.bpfile = bpfile;
+		this.pbamount = pbamount;
 		this.bpprice = bpprice;
 	}
 	public BasketDTO() {
 		super();
 	}
+	
     
 }

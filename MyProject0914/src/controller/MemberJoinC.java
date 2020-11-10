@@ -22,10 +22,10 @@ public class MemberJoinC extends HttpServlet {
 		MemberJoinS jsvc = new MemberJoinS();
 		int result=jsvc.memberJoion(request);
 		if(result==1)
-			{response.sendRedirect("memberlogin.jsp");
+			{response.sendRedirect("Main.jsp");
 			}
 		else
-			{response.sendRedirect("memberjoin.jsp");
+			{response.sendRedirect("");
 			}
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

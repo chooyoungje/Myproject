@@ -26,7 +26,7 @@ public class MemberLoginC extends HttpServlet {
 		if(result==1)
 			{HttpSession session = request.getSession();
 			 session.setAttribute("loginid", mid);
-			 response.sendRedirect("boardlistall");
+			 response.sendRedirect("Main.jsp");
 			}
 		else
 			{response.sendRedirect("memberloginfail.jsp");

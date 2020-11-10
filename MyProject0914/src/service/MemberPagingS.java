@@ -44,10 +44,10 @@ public class MemberPagingS {
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-		BoardDAO bDAO = new BoardDAO();
-		bDAO.dbconnection();
-		int listCount = bDAO.listCount();
-		bDAO.dbClose();
+		MemberDAO mDAO = new MemberDAO();
+		mDAO.dbconnection();
+		int listCount = mDAO.listCount();
+		mDAO.dbClose();
 		int maxPage = (int)(Math.ceil((double)listCount/PAGE_LIMIT)); 
 		int startPage = (((int)(Math.ceil((double)page/BLOCK_LIMIT))) - 1) * BLOCK_LIMIT + 1;
 		int endPage = startPage + BLOCK_LIMIT - 1;

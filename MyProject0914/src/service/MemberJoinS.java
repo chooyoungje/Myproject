@@ -15,7 +15,12 @@ public class MemberJoinS {
 		String mpassword= request.getParameter("mpassword");
 		String mname= request.getParameter("mname");
 		String mbirth= request.getParameter("mbirth"); 
-		String maddress= request.getParameter("maddress");
+		String maddress1= request.getParameter("maddress1");
+		String maddress2= request.getParameter("maddress2");
+		String maddress3= request.getParameter("maddress3");
+		String maddress4= request.getParameter("maddress4");
+		String maddress5= request.getParameter("maddress5");
+		String maddress = maddress1+maddress2+maddress3+maddress4+maddress5;
 		String mphone= request.getParameter("mphone");
 		MemberDAO mdao = new MemberDAO();
 		MemberDTO mdto = new MemberDTO();

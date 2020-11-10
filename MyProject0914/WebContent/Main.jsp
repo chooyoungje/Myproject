@@ -164,7 +164,7 @@
           .prev, .next,.text {font-size: 11px}
         }
         #search01   {box-sizing: border-box;
-                     width: 91%;
+                     width: 70%;
                      height: 45px;
                      font-size: 20px ;
                      background-color: white;
@@ -590,29 +590,24 @@ body {font-family: Arial;}
   padding: 6px 12px;
   border: 1px solid #ccc;
   border-top: none;
-  
 }
 
 /* ---------------------------공지사항 스타일 끝 */
-
 
 	.inner_button{
 		width : 50%;
 		height :60px;
 		float:left;
 		font-size:30px;
-		
 	}
 	.inner_font{
 	float:left;
 	width : 100%;
 	background-color:white;
 	font-size:20px;
-	
 	}
 
 /* 시설 모달 끝------------------------------------------ */
-
   .modal {
             display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
@@ -647,32 +642,38 @@ body {font-family: Arial;}
             cursor: pointer;
         }
 
-
-
-
-
         </style>
         
 </head>
 <body>
     
+      <script>
+      function locationsearch(){
+    	  locationsearchform.submit();
+      }
+      
+   
+      </script>
       
       <div id="main">
-        <i class="far fa-building" style="font-size: 43px;float: left;"></i>
+        <a href="Main.jsp"><i class="far fa-building" style="font-size: 43px;float: left;"></i></a>
             <div id="main_search">
-              <input id=search01 type="text">
-              <i class="fas fa-search" style="font-size: 30px;" onclick=""></i>
+            	<form action="locationsearch" method="post" name="locationsearchform">	
+              		<input id=search01 name="lsearch" type="text">
+              	</form>
             </div>
-            <i class="fas fa-street-view" onclick="location.href='MyLocationMap.jsp'" style="font-size: 43px; float: left; " onclick=""></i>
-            
+              <button onclick="locationsearch()" style="float:left;">시설검색</button>
+           <a href="https://map.kakao.com/link/search/헬스"><i class="fas fa-street-view" style="font-size: 43px; float: left; "></i></a>
       </div>
+      
+      
       
 <!-- --------------------------------------------------------------------상단 그림 -->
 <div>
     <div class="slideshow-container">
 
       <div class="container mySlides fade">
-        <img src="../images/메인이미지.jpg" alt="Notebook" class="main_img">
+        <img src="메인이미지.jpg" alt="Notebook" class="main_img">
         <div class="content">
         </div>
       </div>
@@ -695,12 +696,6 @@ body {font-family: Arial;}
     </div>
 </div>
 
-  <div style="margin: auto;">
-    <span class="dot" onclick="currentSlide(1)"></span> 
-    <span class="dot" onclick="currentSlide(2)"></span> 
-    <span class="dot" onclick="currentSlide(3)"></span> 
-  </div>
-
 
   <!-- ------------------------공지사항------------------- -->
 <div style="width: 100%; float: left; padding: 20px;">
@@ -711,7 +706,7 @@ body {font-family: Arial;}
     <a href="boardlistpaging" id="about1">게시판</a>
     <a href="mypage" id="blog1">마이페이지</a>
     <c:if test="${sessionScope.loginid eq 'admin'}">
-    <a href="#" id="projects1">관리자 전용</a>
+    <a href="admin" id="projects1">관리자 전용</a>
     </c:if>
   </div>
   <div style="width: 60%; float: left; margin-left: 95px;">  
@@ -738,21 +733,35 @@ body {font-family: Arial;}
   </div>
         <!--  로그인 창---------------------------------------------------------------------------->
 
-      <div style="width:300px; float: left; padding:15px; margin-left: 10px; background-color: rgb(54, 116, 231);">
+      <div style="width:300px;height:220px; float: left; padding:15px; margin-left: 10px; background-color: rgb(54, 116, 231);">
+      <c:if test="${sessionScope.loginid eq null}">
+      	<form action="memberlogin" name="loginform" method="post">
         <div id="idpwbox">
-            <input type="text" class="inbox" placeholder="아이디를 입력하세요" style="width: 270px;"><br>
-            <input type="text" class="inbox" placeholder="비밀번호를 입력하세요" style="width: 270px;"><br>
-            <span>아이디 찾기</span>
-            <span style="margin-left:80px;">비밀번호 찾기</span><br>
+            <input type="text" name="mid" class="inbox" placeholder="아이디를 입력하세요" style="width: 270px;"><br>
+            <input type="text" name="mpassword" class="inbox" placeholder="비밀번호를 입력하세요" style="width: 270px;"><br>
+            <span><a href="FindId.jsp" style="color:white">아이디 찾기</a></span>
+            <span style="margin-left:80px;"><a href="FindPw.jsp" style="color:white">비밀번호 찾기</a></span><br>
         </div>
+        </form>
         <div style="margin-top: 20px;">
-            <button class="button" style="width: 100%;"><span>로그인 </span></button><br>
-            <button class="button btn" style="background-color: rgb(10, 216, 171);">회원가입</button>
+            <button class="button" style="width: 100%;" onclick="loginformf()"><span>로그인 </span></button><br>
         </div>
+       </c:if>
+       <c:if test="${sessionScope.loginid ne null}">
+       	${sessionScope.loginid}님이 로그인 중
+            <button class="button" onclick="location.href='memberlogout'">로그아웃</button>
+       </c:if>
+            <button class="button btn" style="background-color: rgb(10, 216, 171);">회원가입</button>
       </div>
 </div>
 
+<script>
+function loginformf(){
+	loginform.submit();
+}
 
+
+</script>
 
 
     <!-- --------------------------------------------체육시설 시작---------------- -->
@@ -769,7 +778,7 @@ body {font-family: Arial;}
                   <p class="title">CEO & Founder</p>
                   <p>Some text that describes me lorem ipsum ipsum lorem.</p>
                   <p>example@example.com</p>
-                  <p><button class="button btn" id="myBtn1">상세보기</button></p>
+                  <p><button class="button btn" id="myBtn1" onclick="location.href='locationview?lnumber='+1">상세보기</button></p>
                 </div>
               </div>
             </div>
@@ -853,12 +862,12 @@ body {font-family: Arial;}
       <!-- 첫 번째 Modal의 내용 -->
       <div class="modal-content">
         <span class="close">&times;</span>                         
-        <form class="modal-content" action="/action_page.php">
+        <form class="modal-content" action="memberjoin" name="memberform" method="post">
               <div class="container">
                 <h1>회원가입</h1>
                 <hr>
                 <label ><b>이메일</b></label>
-                <input type="email" name="mid" id="mid" placeholder="이메일을 입력하세요" name="email" required>
+                <input type="text" name="mid" id="mid" placeholder="이메일을 입력하세요" name="email" required>
           
                 <label ><b>비밀번호</b></label>
                 <input type="password" onkeyup="pwdCheck1()" name="mpassword" id="mpassword" placeholder="비밀번호를 입력하세요" required><br>
@@ -872,11 +881,11 @@ body {font-family: Arial;}
                 <input type="text" class="input1" name="mname" id="mname" placeholder="이름" required>
 
                 <label ><b>주소</b></label><br>
-                <input type="text" id="sample6_postcode" class="input2"placeholder="우편번호">
-                <input type="button" class="input2" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-                <input type="text" style="width: 100%;" id="sample6_address" class="input2" placeholder="주소"><br>
-                <input type="text" style="width: 55%;" id="sample6_detailAddress" class="input2"placeholder="상세주소">
-                <input type="text" id="sample6_extraAddress" class="input2"placeholder="참고항목"><br>
+                <input type="text" id="sample6_postcode" class="input2"placeholder="우편번호" name="maddress1">
+                <input type="button" class="input2" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" name="maddress2"><br>
+                <input type="text" style="width: 100%;" id="sample6_address" class="input2" placeholder="주소" name="maddress3"><br>
+                <input type="text" style="width: 55%;" id="sample6_detailAddress" class="input2"placeholder="상세주소" name="maddress4">
+                <input type="text" id="sample6_extraAddress" class="input2"placeholder="참고항목" name="maddress5"><br>
 
                 <label><b>전화번호</b></label>
                 <input type="text" class="input1" name="mphone" id="mphone" onkeyup="phonech()" placeholder="전화번호를 입력하세요" required><br>
@@ -888,16 +897,22 @@ body {font-family: Arial;}
           
           
                 <div class="clearfix">
-                  <button type="submit"  class="button" style="margin-bottom: 10px;">회원가입</button>
+                  <button onclick="memberin()"  class="button" style="margin-bottom: 10px;">회원가입</button>
                 </div>
               </div>
             </form>
       </div>
     </div>
- 
- 
+ <script>
+	 function memberin(){
+		 memberform.submit();
+	 }
+	 
+	 function productsearch(){
+		 productsearchform.submit();
+	 }
+ </script>
   
-          <!-- ----------------------------------체육시설 사진 끝---------- -->
            <div style="margin-left: 10px;float:left;width:100%">        
           <h3 style="font-size: 30px;" style="float: left;">건강식품</h3>
           </div>
@@ -905,9 +920,9 @@ body {font-family: Arial;}
       
               <div> 
 	              <form action="productsearch" method="post" name="productsearchform">
-		              <input id=search02 type="text" style="float: left; border:none;">
-		            <a href="productsearch()" style="float: left;margin:5px;"><i class="fas fa-search" style="font-size: 30px;"></i></a>
+		              <input id=search02 name="psearch" type="text" style="float: left; border:none;">
 	              </form>
+		            <a onclick="productsearch()" style="float: left;margin:5px;"><i class="fas fa-search" style="font-size: 30px;"></i></a>
               </div>
         
     </div>
@@ -986,7 +1001,7 @@ body {font-family: Arial;}
         	59.99$
         
         <div id="map" style="display:hidden"></div>
-		<button onclick="resizeMap()">지도 보기</button>
+		<button onclick="location.href='locationggym?lnumber='+1">찜하기</button>
       </div>
     </div>
  
@@ -1001,7 +1016,7 @@ body {font-family: Arial;}
         	59.99$
         
         <div id="map" style="display:hidden"></div>
-		<button onclick="resizeMap()">지도 보기</button>
+		<button onclick="location.href='locationggym?lnumber='+2">찜하기</button>
       </div>
     </div>
     
@@ -1016,7 +1031,7 @@ body {font-family: Arial;}
         	59.99$
         
         <div id="map" style="display:hidden"></div>
-		<button onclick="resizeMap()">지도 보기</button>
+		<button onclick="location.href='locationggym?lnumber='+3">찜하기</button>
       </div>
     </div>
     
@@ -1031,7 +1046,7 @@ body {font-family: Arial;}
         	59.99$
         
         <div id="map" style="display:hidden"></div>
-		<button onclick="resizeMap()">지도 보기</button>
+		<button onclick="location.href='locationggym?lnumber='+4">찜하기</button>
       </div>
     </div>
     
@@ -1046,7 +1061,7 @@ body {font-family: Arial;}
         	59.99$
         
         <div id="map" style="display:hidden"></div>
-		<button onclick="resizeMap()">지도 보기</button>
+		<button onclick="location.href='locationggym?lnumber='+5">찜하기</button>
       </div>
     </div>
     
@@ -1061,7 +1076,7 @@ body {font-family: Arial;}
         	59.99$
         
         <div id="map" style="display:hidden"></div>
-		<button onclick="resizeMap()">지도 보기</button>
+		<button onclick="location.href='locationggym?lnumber='+6">찜하기</button>
       </div>
     </div>
         
@@ -1074,8 +1089,12 @@ body {font-family: Arial;}
       <div class="modal-content">
         <span class="close">&times;</span>
        <img src="ProductFile/19937eec16.jpg" class="product_img"alt="Jane" >
-        	59.99$
-        
+        	59.99$<br>
+        	<form name="bas1" method="post" action="basketinput">
+        	수량 결정<input type="text" name="pbamount" id="pbamount">
+        	<input type="hidden" name="pnumber" value="2">
+        	</form>
+        <button onclick="basket1()">장바구니 담기</button>
       </div>
     </div>
     
@@ -1087,8 +1106,12 @@ body {font-family: Arial;}
       <div class="modal-content">
         <span class="close">&times;</span>
       <img src="ProductFile/건강식품1.png" class="product_img"alt="Jane" >
-        	59.99$
-        
+        	59.99$<br>
+        	<form name="bas2" method="post" action="basketinput">
+        	수량 결정<input type="text" name="pbamount" id="pbamount">
+        	<input type="hidden" name="pnumber" value="3">
+        	</form>
+        <button onclick="basket2()">장바구니 담기</button>
       </div>
     </div>
     
@@ -1099,8 +1122,12 @@ body {font-family: Arial;}
       <div class="modal-content">
         <span class="close">&times;</span>
         <img src="ProductFile/건강식품2.png" class="product_img"alt="Jane" >
-        	59.99$
-        
+        	59.99$<br>
+        	<form name="bas3" method="post" action="basketinput">
+        	수량 결정<input type="text" name="pbamount" id="pbamount">
+        	<input type="hidden" name="pnumber" value="4">
+        	</form>
+        <button onclick="basket3()">장바구니 담기</button>
       </div>
     </div>
     
@@ -1112,10 +1139,29 @@ body {font-family: Arial;}
       <div class="modal-content">
         <span class="close">&times;</span>
         <img src="ProductFile/다운로드.jpg" alt="John" class="product_img" style="width:100%">
-        	59.99$
-        
+        	59.99$<br>
+        	<form name="bas4" method="post" action="basketinput">
+        	수량 결정<input type="text" name="pbamount" id="pbamount">
+        	<input type="hidden" name="pnumber" value="5">
+        	</form>
+        <button onclick="basket4()">장바구니 담기</button>
       </div>
     </div>
+        
+        <script>
+        function basket1(){
+        	bas1.submit();
+        }
+        function basket2(){
+        	bas2.submit();
+        }
+        function basket3(){
+        	bas3.submit();
+        }
+        function basket4(){
+        	bas4.submit();
+        }
+        </script>
         
         
         
@@ -1161,60 +1207,11 @@ body {font-family: Arial;}
     }
   };
   
+  
+  
   </script>
-	<script>
-	  document.getElementById('in_linfo').onload = function(){
-			location.href="locationview?location="+1;
-		  	var table1 = ${ldto.lname};
-		  	var table2 = ${ldto.location};
-		  	var table3 = ${ldto.lpnumber};
-		  	var table4 = ${ldto.lfile};
-		  	document.getElementById('in_linfo').innerHTML=table1,table2,table3,table4;
-		    }
-			  	 	
-			function locationView1(){
-				location.href="locationview?location="+1;
-			}
-			function productsearch(){
-				productsearchform.submit();
-			}
 	
-	</script>
-  <script>
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-	    mapOption = { 
-	        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-	        level: 3 // 지도의 확대 레벨
-			    };
-		
-		var map = new kakao.maps.Map(mapContainer, mapOption);
-		// 지도를 생성합니다
-		
-		function resizeMap() {
-		    var mapContainer = document.getElementById('map');
-		    mapContainer.style.width = '100%';
-		    mapContainer.style.height = '300px'; 
-		    map.relayout();
-		    var movelation = new kakao.mao.Lating(33.450701, 126.570667);
-		    map.setCenter(movelation);
-		}
-		
-		
-		// 마커가 표시될 위치입니다 
-		var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
-		
-		// 마커를 생성합니다
-		var marker = new kakao.maps.Marker({
-		    position: markerPosition
-		});
-		
-		// 마커가 지도 위에 표시되도록 설정합니다
-		marker.setMap(map);
-		// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
-		// marker.setMap(null);
-		
-        </script>      
-        
+  
         
 
           <!-- -------------------------- 하단 시작 -------------------------------- -->
@@ -1283,7 +1280,8 @@ body {font-family: Arial;}
 		 var pwdch=document.getElementById("pwdch");
 		 if(pwd.match(exp))
 		    {pwdch.style.color="green";
-		     pwdch.innerHTML="비밀번호 형식 맞음";
+		     pwdch.i
+		     nnerHTML="비밀번호 형식 맞음";
 		     pwdch.style.fontSize= "12px";
 		    }
 		 else

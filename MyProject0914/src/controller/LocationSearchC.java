@@ -26,7 +26,7 @@ public class LocationSearchC extends HttpServlet {
 		LocationSearchS svc = new LocationSearchS();
 		List<LocationDTO> llist =svc.locationSearch(request);
 		request.setAttribute("llist", llist);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("locationsearch");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("locationsearch.jsp");
 		dispatcher.forward(request, response);
 	}
 

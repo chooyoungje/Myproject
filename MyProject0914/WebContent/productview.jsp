@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<jsp:include page="maintool.jsp" flush="false"/>
 <body>
 	
 	${bdto.pnumber}

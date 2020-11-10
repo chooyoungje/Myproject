@@ -173,15 +173,15 @@ public class MemberDAO {
 		return mdto;
 	}
 	public int MemberUpdateProcess(MemberDTO mdto) {
-		String sql="UPDATE MEMBER SET MPASSWORD=?,MNAME=?,MBIRTH=?,MEMAIL=?,MADDRESS=?,MPHONE=?,MPHOTO=? WHERE MID=?";
+		String sql="UPDATE MEMBER SET MPASSWORD=?,MNAME=?,MADDRESS=?,MPHONE=?,MBIRTH=TO_DATE(?,'YYYY-MM-DD') WHERE MID=?";
 		int result=0;
 		try {pstmt=con.prepareStatement(sql);
 			 pstmt.setString(1, mdto.getMpassword());
 			 pstmt.setString(2, mdto.getMname());
-			 pstmt.setString(3, mdto.getMbirth());
-			 pstmt.setString(5, mdto.getMaddress());
-			 pstmt.setString(6, mdto.getMphone());
-			 pstmt.setString(8, mdto.getMid());
+			 pstmt.setString(3, mdto.getMaddress());
+			 pstmt.setString(4, mdto.getMphone());
+			 pstmt.setString(5, mdto.getMbirth());
+			 pstmt.setString(6, mdto.getMid());
 			 result=pstmt.executeUpdate();
 			} 
 		catch (SQLException e) {
@@ -259,6 +259,52 @@ public class MemberDAO {
 			rsClose();
 		}
 		return memberList;
+	}
+	public MemberDTO FindId(String mname, String mbirth) {
+		String sql="SELECT * FROM MEMBER WHERE MNAME=? AND MBIRTH=?";
+		MemberDTO mdto= null;
+		try {pstmt=con.prepareStatement(sql);
+			 pstmt.setString(1, mname);
+			 pstmt.setString(2, mbirth);
+			 rs=pstmt.executeQuery();
+			 if(rs.next())
+			 	{mdto=new MemberDTO();
+				 mdto.setMid(rs.getString("MID"));
+			 	 mdto.setMbirth(rs.getString("MBIRTH"));
+			 	}
+			} 
+		catch (SQLException e) 
+			{e.printStackTrace();
+			}
+		finally {pstmtClose();
+				 rsClose();
+				}
+		
+		return mdto;
+	}
+	
+	public MemberDTO FindPW(String mid, String mbirth) {
+		String sql="SELECT * FROM MEMBER WHERE MID=? AND MBIRTH=?";
+		MemberDTO mdto= null;
+		try {pstmt=con.prepareStatement(sql);
+		
+			 pstmt.setString(1, mid);
+			 pstmt.setString(2, mbirth);
+			 rs=pstmt.executeQuery();
+			 if(rs.next())
+			 	{mdto=new MemberDTO();
+				 mdto.setMid(rs.getString("MID"));
+			 	 mdto.setMbirth(rs.getString("MPASSWORD"));
+			 	}
+			} 
+		catch (SQLException e) 
+			{e.printStackTrace();
+			}
+		finally {pstmtClose();
+				 rsClose();
+				}
+		
+		return mdto;
 	}
 	
 	
